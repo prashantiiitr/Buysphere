@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  question: {
+  answer: {
     type: String,
     required: true,
 

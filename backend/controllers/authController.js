@@ -7,10 +7,10 @@ import { comparePassword, hashPassword } from "../utils/authHelper.js"; // Ensur
 
 export const registerController = async (req, res) => {
   try {
-    const { name, email, password, phone, address } = req.body;
+    const { name, email, password, phone, address,answer } = req.body;
 
     // Check if all fields are provided
-    if (!name || !email || !password || !phone || !address) {
+    if (!name || !email || !password || !phone || !address||!answer) {
       return res.status(400).send({
         success: false,
         message: 'All fields are required'
@@ -37,7 +37,8 @@ export const registerController = async (req, res) => {
       email,
       password: hashedPassword,
       phone,
-      address
+      address,
+      answer,
     });
     
     // Save the user to the database
