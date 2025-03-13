@@ -9,6 +9,8 @@ import Contact from './pages/Contact';
 import Register from './pages/Auth/Register';
 import Login from './pages/Auth/Login';
 import Dashboard from './pages/user/Dashboard';
+import PrivateRoute from './components/Routes/PrivateRoute';
+import ForgotPassword from './pages/Auth/ForgotPassword';
 
 
 function App() {
@@ -18,8 +20,11 @@ function App() {
       <Route path="/" element={<Homepage/>}/>
       <Route path ="/register" element={<Register/>}/>
       <Route path ="/login" element={<Login/>}/>
-      <Route path ="/dashboard" element={<Dashboard/>}/>
+      <Route path="/dashboard" element={<PrivateRoute />}>
+          <Route path="user" element={<Dashboard />} />
+      </Route>
       <Route path="/about" element={<About/>}/>
+      <Route path="/forgot-password" element={<ForgotPassword/>} />
       <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
       <Route path="*" element={<Pagenotfound/>}/>
       <Route path ="/contact" element={<Contact/>}/>

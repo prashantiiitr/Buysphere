@@ -34,6 +34,11 @@ const userSchema = new mongoose.Schema({
   role: {
     type: Number,
     default: 0,
+  },
+  question: {
+    type: String,
+    required: true,
+
   }
 }, { timestamps: true });
 

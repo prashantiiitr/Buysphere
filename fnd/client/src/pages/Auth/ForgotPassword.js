@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 
-const ForgotPasssword = () => {
+
+const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [answer, setAnswer] = useState("");
@@ -82,4 +83,4 @@ const ForgotPasssword = () => {
   );
 };
 
-export default ForgotPasssword;
+export default ForgotPassword;

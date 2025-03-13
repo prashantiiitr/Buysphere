@@ -3,11 +3,12 @@ import { registerController } from '../controllers/authController.js';
 import { loginController } from '../controllers/authController.js';
 import { testcontroller } from '../controllers/authController.js';
 import { requireSignIn, isAdmin } from '../middlewares/authMiddleware.js';
-
+import { forgotPasswordController } from '../controllers/authController.js';
 const router = express.Router();
 
 router.post('/register', registerController); 
 router.post('/login', loginController);
+router.post('forgot-password',forgotPasswordController);
 router.get('/test',requireSignIn,isAdmin,testcontroller)
 ///protected route
 

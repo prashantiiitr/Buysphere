@@ -3,7 +3,8 @@ import Layout from "./../../components/layout/Layout";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useAuth } from "./../../context/auth";
+
+import { useAuth } from "../../context/auth";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -67,15 +68,14 @@ const Login = () => {
             />
           </div>
           <div className="mb-3">
-            <button
-              type="button"
-              className="btn forgot-btn"
-              onClick={() => {
-                navigate("/forgot-password");
-              }}
-            >
-              Forgot Password
-            </button>
+          <button
+  type="button"
+  className="btn forgot-btn"
+  onClick={() => navigate("/forgot-password", { replace: true })}
+>
+  Forgot Password
+</button>
+
           </div>
 
           <button type="submit" className="btn btn-primary">

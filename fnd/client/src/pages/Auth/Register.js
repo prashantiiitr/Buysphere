@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Layout from '../../components/layout/Layout';
+import Layout from "./../../components/layout/Layout";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import axios from "axios";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -98,7 +98,17 @@ const Register = () => {
               required
             />
           </div>
-          
+          <div className="mb-3">
+            <input
+              type="text"
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              className="form-control"
+              id="exampleInputEmail1"
+              placeholder="What is Your Favorite sports"
+              required
+            />
+          </div>
           <button type="submit" className="btn btn-primary">
             REGISTER
           </button>
