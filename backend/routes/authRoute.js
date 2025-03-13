@@ -13,7 +13,10 @@ router.get('/test',requireSignIn,isAdmin,testcontroller)
 ///protected route
 
 
-router.get('/user-auth,requireSignIn,isAdmin',(req,res)=>{
+router.get('/user-auth',requireSignIn,(req,res)=>{
+  res.send(200).sendstatus({ok:true})
+})
+router.get('/admin-auth',requireSignIn,isAdmin,(req,res)=>{
   res.send(200).send({ok:true})
 })
 export default router;
