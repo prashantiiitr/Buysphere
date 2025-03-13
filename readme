@@ -1,0 +1,97 @@
+import userModel from "../models/user.model.js"
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { hashPassword } from "../utils/authHelper"; // Corrected import
+
+export const registerController = async (req, res) => {
+  try {
+    const { name, email, password, phone, address } = req.body;
+
+    // Check if all fields are provided
+    if (!name || !email || !password || !phone || !address) {
+      return res.status(400).send({
+        success: false,
+        message: 'All fields are required'
+      });
+    }
+
+    // Check if the user already exists
+    const userExists = await userModel.findOne({ email });
+    if (userExists) {
+      return res.status(200).send({
+        success: false,
+        message: 'User already exists'
+      });
+    }
+
+    // Hash the password
+    const hashedPassword = await hashPassword(password);
+
+    // Create a new user
+    const user = new userModel({
+      name,
+      email,
+      password: hashedPassword,
+      phone,
+      address
+    });
+    
+    // Save the user to the database
+    await user.save();
+
+    // Send the response
+    res.send({
+      success: true,
+      message: 'User created successfully',
+      user
+    });
+    
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: 'Internal server error',
+      error
+    });
+  }
+
+};
+
+
+export const hashPassword = async (password) => {
+  try {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      return hashedPassword;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const comparePassword = async (password, hashedPassword) => {
+  try {
+    return await bcrypt.compare(password, hashedPassword);
+  } catch (error) {
+    console.log(error);
+  }
+};
+import dotenv from 'dotenv';
+import express from 'express';
+import authRoutes from './routes/authRoute.js';
+import connectToDb from './config/db.js';
+
+dotenv.config();
+
+const app = express();
+
+connectToDb();
+
+app.use(express.json()); // Middleware to parse JSON
+app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded data
+
+app.use('/api/v1/auth', authRoutes);
+
+app.get('/', (req, res) => {
+    res.send("Hello world");
+});
+
+export default app;
