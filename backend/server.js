@@ -1,7 +1,7 @@
 import http from 'http';
 import app from './app.js';
 import dotenv from 'dotenv';
-import cors from 'cors';
+
 dotenv.config();
 
 const port = process.env.PORT ||3001;

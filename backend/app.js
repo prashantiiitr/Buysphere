@@ -3,6 +3,7 @@ import express from 'express';
 import authRoutes from './routes/authRoute.js';
 import connectToDb from './config/db.js';
 import cors from 'cors';
+import categoryRoutes from './routes/categoryRoutes.js';
 dotenv.config();
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded data
 
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/auth', categoryRoutes);
 
 app.get('/', (req, res) => {
     res.send("Hello world");
