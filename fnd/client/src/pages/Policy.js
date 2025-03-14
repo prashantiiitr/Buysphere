@@ -1,9 +1,9 @@
-import React from 'react'
-import Layout from '../components/layout/Layout'
+import React from "react";
+import Layout from "../components/Layout/Layout";
 
-const PrivacyPolicy = () => {
+const Policy = () => {
   return (
-    <Layout>
+    <Layout title={"Privacy Policy"}>
       <div className="row contactus ">
         <div className="col-md-6 ">
           <img
@@ -26,6 +26,4 @@ const PrivacyPolicy = () => {
   );
 };
 
-
-
-export default PrivacyPolicy
+export default Policy;
